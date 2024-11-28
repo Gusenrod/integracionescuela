@@ -1,0 +1,51 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Fondo azul para toda la pantalla */
+  body {
+    background-color: #204b8c; /* Azul oscuro */
+    height: 100vh;
+  }
+  
+  /* Contenedor de login centrado */
+  .container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Tarjeta de login */
+  .card {
+    width: 400px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+  }
+  
+  /* Imagen redonda */
+  .card img {
+    border-radius: 50%;
+  }
+  
+  /* Título */
+  .card h5 {
+    color: #204b8c;
+  }
+  
+  /* Botón de inicio */
+  .btn-primary {
+    background-color: #204b8c;
+    border-color: #204b8c;
+  }
+  
+  .btn-primary:hover {
+    background-color: #163d6f;
+    border-color: #163d6f;
+  }
+  

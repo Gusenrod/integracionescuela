@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario del Aula</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            background-color: #1c3b64;
+            color: white;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+            padding: 20px 10px;
+        }
+        .sidebar h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .main-content h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .schedule div {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .schedule div input {
+            width: 100%;
+            border: none;
+            background-color: #f9f9f9;
+            text-align: center;
+            font-size: 14px;
+        }
+        .schedule div input:focus {
+            outline: none;
+            border: 1px solid #007bff;
+            background-color: #ffffff;
+        }
+        .buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons .save {
+            background-color: #4caf50;
+            color: white;
+        }
+        .buttons .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SA-EDU</h1>
+        <ul>
+            <li><a href="iniciosecretaria.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="infoestudiantes.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="horariosecretaria.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="asignaciónpuntos.html">Recompensas <i class="fas fa-gift"></i></a></li>
+<li><a href="mensajessecretaria.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+
+        </ul>
+    </div>
+    <div class="main-content">
+        <h2>Horario de 1° Grado</h2>
+        <form id="horarioForm" action="editarhorario.html" method="post">
+            <div class="schedule">
+                <div><input type="text" name="lunes_1" value="Inglés 8:00 AM – 10:00 AM"></div>
+                <div><input type="text" name="martes_1" value="Inglés 8:00 AM – 10:00 AM"></div>
+                <div><input type="text" name="miercoles_1" value="Inglés 8:00 AM – 10:00 AM"></div>
+                <div><input type="text" name="jueves_1" value="Inglés 8:00 AM – 10:00 AM"></div>
+                <div><input type="text" name="viernes_1" value="Inglés 8:00 AM – 10:00 AM"></div>
+                <div><input type="text" name="lunes_2" value="Matemática 10:00 AM – 11:00 AM"></div>
+                <div><input type="text" name="martes_2" value="Matemática 10:00 AM – 11:00 AM"></div>
+                <div><input type="text" name="miercoles_2" value="Matemática 10:00 AM – 11:00 AM"></div>
+                <div><input type="text" name="jueves_2" value="Matemática 10:00 AM – 11:00 AM"></div>
+                <div><input type="text" name="viernes_2" value="Matemática 10:00 AM – 11:00 AM"></div>
+                <div><input type="text" name="lunes_3" value="Comunicación 11:00 AM – 12:00 PM"></div>
+                <div><input type="text" name="martes_3" value="Comunicación 11:00 AM – 12:00 PM"></div>
+                <div><input type="text" name="miercoles_3" value="Comunicación 11:00 AM – 12:00 PM"></div>
+                <div><input type="text" name="jueves_3" value="Comunicación 11:00 AM – 12:00 PM"></div>
+                <div><input type="text" name="viernes_3" value="Comunicación 11:00 AM – 12:00 PM"></div>
+                <div><input type="text" name="lunes_4" value="Álgebra 12:00 PM – 1:00 PM"></div>
+                <div><input type="text" name="martes_4" value="Álgebra 12:00 PM – 1:00 PM"></div>
+                <div><input type="text" name="miercoles_4" value="Álgebra 12:00 PM – 1:00 PM"></div>
+                <div><input type="text" name="jueves_4" value="Álgebra 12:00 PM – 1:00 PM"></div>
+                <div><input type="text" name="viernes_4" value="Álgebra 12:00 PM – 1:00 PM"></div>
+                <div><input type="text" name="lunes_5" value="Raz. Verbal 1:00 PM – 2:00 PM"></div>
+                <div><input type="text" name="martes_5" value="Raz. Verbal 1:00 PM – 2:00 PM"></div>
+                <div><input type="text" name="miercoles_5" value="Raz. Verbal 1:00 PM – 2:00 PM"></div>
+                <div><input type="text" name="jueves_5" value="Raz. Verbal 1:00 PM – 2:00 PM"></div>
+                <div><input type="text" name="viernes_5" value="Raz. Verbal 1:00 PM – 2:00 PM"></div>
+            </div>
+            <div class="buttons">
+                <button class="save" type="submit" onclick="mostrarMensaje()">Guardar</button>
+                <button class="cancel" type="button" onclick="window.location.href='iniciosecretaria.html'">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function mostrarMensaje() {
+            // Mensaje emergente (alerta)
+            alert("El horario se ha guardado correctamente");
+        }
+    </script>
+</body>
+</html>

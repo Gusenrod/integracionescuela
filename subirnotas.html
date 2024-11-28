@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Calificaciones</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #204b8c;
+      color: white;
+      padding-top: 20px;
+      padding-left: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar ul li i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .container {
+      margin-left: 240px;
+      padding: 20px;
+      width: calc(100% - 240px);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .top-bar a {
+      color: #204b8c;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #204b8c;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    .dropdown select {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .grades-table-container {
+      display: block; /* Tabla siempre visible */
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #204b8c;
+      color: white;
+    }
+
+    td {
+      font-size: 16px;
+    }
+
+    .save-button {
+      background-color: #204b8c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .save-button:hover {
+      background-color: #164b6c;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <img src="Logo2021.png" alt="Logo">
+    <h2>SA-EDU</h2>
+    <ul>
+        <li><a href="inicioprofesor.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="verinfoprofesor.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="gestionarcursos.html">Cursos <i class="fas fa-book"></i></a></li>
+<li><a href="horarioprofesor.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="subirnotas.html">Calificaciones <i class="fas fa-chart-bar"></i></a></li>
+<li><a href="mensajesprofesor.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div class="top-bar">
+      <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+    </div>
+
+    <div class="header">
+      <h1>Editar Calificaciones</h1>
+    </div>
+
+    <!-- Botón de selección de alumno -->
+    <div class="dropdown">
+      <select id="alumno" onchange="mostrarCalificaciones()">
+        <option value="0">Selecciona un Alumno</option>
+        <option value="1">Rojas Chomba, Víctor Manuel</option>
+      </select>
+    </div>
+
+    <!-- Tabla de calificaciones para editar -->
+    <div class="grades-table-container" id="grades-container">
+      <table id="calificaciones-table">
+        <thead>
+          <tr>
+            <th>Curso</th>
+            <th>Calificación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inglés</td>
+            <td><input type="number" id="inglés" placeholder="Calificación" min="0" max="20"></td>
+          </tr>
+          <tr>
+            <td>Matemática</td>
+            <td><input type="number" id="matematica" placeholder="Calificación" min="0" max="20"></td>
+          </tr>
+          <tr>
+            <td>Comunicación</td>
+            <td><input type="number" id="comunicacion" placeholder="Calificación" min="0" max="20"></td>
+          </tr>
+          <tr>
+            <td>Álgebra</td>
+            <td><input type="number" id="algebra" placeholder="Calificación" min="0" max="20"></td>
+          </tr>
+          <tr>
+            <td>Raz. Verbal</td>
+            <td><input type="number" id="razon-verbal" placeholder="Calificación" min="0" max="20"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Botón para guardar los cambios -->
+      <button class="save-button" onclick="guardarCalificaciones()">Guardar Cambios</button>
+    </div>
+  </div>
+
+  <script>
+    // Función para mostrar las calificaciones cuando se selecciona un alumno
+    function mostrarCalificaciones() {
+      const alumno = document.getElementById('alumno').value;
+      const gradesContainer = document.getElementById('grades-container');
+      
+      // Si no se selecciona un alumno, no mostrar la tabla
+      if (alumno == 0) {
+        gradesContainer.style.display = 'none';
+        return;
+      }
+
+      // Mostrar la tabla de calificaciones
+      gradesContainer.style.display = 'block';
+    }
+
+    // Función para guardar las calificaciones editadas
+    function guardarCalificaciones() {
+      const inglés = document.getElementById('inglés').value;
+      const matematica = document.getElementById('matematica').value;
+      const comunicacion = document.getElementById('comunicacion').value;
+      const algebra = document.getElementById('algebra').value;
+      const razonVerbal = document.getElementById('razon-verbal').value;
+
+      // Validación para asegurarse de que las calificaciones están dentro del rango permitido
+      if (inglés < 0 || inglés > 20 || matematica < 0 || matematica > 20 || comunicacion < 0 || comunicacion > 20 || algebra < 0 || algebra > 20 || razonVerbal < 0 || razonVerbal > 20) {
+        alert("Las calificaciones deben estar entre 0 y 20.");
+        return;
+      }
+
+      // Aquí puedes realizar la lógica para guardar las calificaciones, como enviarlas a un servidor o almacenarlas en localStorage.
+      console.log('Calificaciones guardadas:');
+      console.log('Inglés:', inglés);
+      console.log('Matemática:', matematica);
+      console.log('Comunicación:', comunicacion);
+      console.log('Álgebra:', algebra);
+      console.log('Raz. Verbal:', razonVerbal);
+
+      // Mensaje de éxito
+      alert('Las calificaciones han sido guardadas correctamente.');
+    }
+  </script>
+
+</body>
+</html>

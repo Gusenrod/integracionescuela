@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Mensajes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .sidebar {
+      background-color: #24478f;
+      color: white;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .icons a {
+      margin-left: 15px;
+      color: #24478f;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    .top-bar .icons a:hover {
+      color: #1a73e8;
+    }
+
+    /* Estilo para la tabla */
+    .messages-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .messages-table th,
+    .messages-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .messages-table th {
+      background-color: #24478f;
+      color: white;
+    }
+
+    .message-item:hover {
+      background-color: #f1f1f1;
+      cursor: pointer;
+    }
+
+    /* Botón de Redactar */
+    .redact-btn {
+      background-color: #24478f;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .redact-btn:hover {
+      background-color: #1a73e8;
+    }
+
+    /* Modal mejorado */
+    .message-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      width: 500px;
+      max-width: 90%;
+      border-radius: 8px;
+      overflow-y: auto;
+    }
+
+    .message-modal h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #24478f;
+    }
+
+    .message-modal p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .message-modal .message-header {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .message-modal .message-header .label {
+      font-weight: bold;
+      color: #24478f;
+    }
+
+    .message-modal .message-content {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .close-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    .close-btn:hover {
+      background-color: #e53935;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="./Logo2021.png" alt="Logo" width="40" height="40"> SA-EDU
+    </div>
+    <ul>
+        <li><a href="inicioprofesor.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="verinfoprofesor.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="gestionarcursos.html">Cursos <i class="fas fa-book"></i></a></li>
+<li><a href="horarioprofesor.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="subirnotas.html">Calificaciones <i class="fas fa-chart-bar"></i></a></li>
+<li><a href="mensajesprofesor.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="icons">
+        <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+      </div>
+    </div>
+
+    <!-- Contenedor de Mensajes -->
+    <div class="container">
+      <h2>Bandeja de Entrada</h2>
+      <table class="messages-table">
+        <thead>
+          <tr>
+            <th>Remitente</th>
+            <th>Asunto</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="message-item" onclick="openMessage('Rodríguez Céspedes, Karen Ariadna', 'Revisión de Materia', '2024-11-27 08:20', 'Este es el contenido del mensaje...')">
+            <td>Rojas Chomba, Vcitor Manuel</td>
+            <td>Revisión de Materia</td>
+            <td>2024-11-27 08:20</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Botón para Redactar un nuevo mensaje -->
+<a href="mensajeriaprofesor.html" class="redact-btn">Redactar</a>
+
+
+  </div>
+
+  <!-- Modal para ver mensaje -->
+  <div class="message-modal" id="messageModal">
+    <div class="message-header">
+      <div><span class="label">Remitente:</span> <span id="messageSender"></span></div>
+      <div><span class="label">Asunto:</span> <span id="messageTitle"></span></div>
+      <div><span class="label">Fecha:</span> <span id="messageDate"></span></div>
+    </div>
+    <div class="message-content" id="messageContent"></div>
+    <button class="close-btn" onclick="closeMessage()">Cerrar</button>
+  </div>
+
+  <script>
+    function openMessage(remitente, asunto, fecha, contenido) {
+      document.getElementById('messageSender').textContent = remitente;
+      document.getElementById('messageTitle').textContent = asunto;
+      document.getElementById('messageDate').textContent = fecha;
+      document.getElementById('messageContent').textContent = contenido;
+      document.getElementById('messageModal').style.display = 'block';
+    }
+
+    function closeMessage() {
+      document.getElementById('messageModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

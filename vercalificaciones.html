@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tus Calificaciones</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #204b8c;
+      color: white;
+      padding-top: 20px;
+      padding-left: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .sidebar ul li i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .container {
+      margin-left: 240px;
+      padding: 20px;
+      width: calc(100% - 240px);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .top-bar a {
+      color: #204b8c;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #204b8c;
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+    }
+
+    .dropdown select {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .grades-table-container {
+      display: none; /* Inicialmente no mostrar la tabla */
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #204b8c;
+      color: white;
+    }
+
+    td {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <img src="Logo2021.png" alt="Logo">
+    <h2>SA-EDU</h2>
+    <ul>
+        <li><a href="inicioalumno.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+        <li><a href="vercursosalumnos.html">Cursos <i class="fas fa-tasks"></i></a></li>
+        <li><a href="verhorariosalumnos.html">Horario <i class="fas fa-clock"></i></a></li>
+        <li><a href="recompensasalumnos.html">Recompensas <i class="fas fa-gift"></i></a></li>
+        <li><a href="vercalificaciones.html">Calificaciones <i class="fas fa-graduation-cap"></i></a></li>
+        <li><a href="mensajesalumnos.html">Bandeja de entrada <i class="fas fa-envelope"></i></a></li>
+        
+    </ul>
+  </div>
+
+  <div class="container">
+    <div class="top-bar">
+      <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+    </div>
+
+    <div class="header">
+      <h1>Tus Calificaciones</h1>
+    </div>
+
+    <!-- Botón de selección de trimestre -->
+    <div class="dropdown">
+      <select id="trimestre" onchange="mostrarCalificaciones()">
+        <option value="0">Selecciona un Trimestre</option>
+        <option value="1">Primer Trimestre</option>
+        <option value="2">Segundo Trimestre</option>
+        <option value="3">Tercer Trimestre</option>
+      </select>
+    </div>
+
+    <!-- Tabla de calificaciones -->
+    <div class="grades-table-container" id="grades-container">
+      <table id="calificaciones-table">
+        <thead>
+          <tr>
+            <th>Curso</th>
+            <th>Calificación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Contenido dinámico -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Calificaciones por trimestre (ejemplo)
+    const calificaciones = {
+      1: { // Primer Trimestre
+        'Inglés': 16,
+        'Matemática': 14,
+        'Comunicación': 18,
+        'Álgebra': 20,
+        'Raz. Verbal': 17,
+      },
+      2: { // Segundo Trimestre
+        'Inglés': 18,
+        'Matemática': 16,
+        'Comunicación': 17,
+        'Álgebra': 19,
+        'Raz. Verbal': 20,
+      },
+      3: { // Tercer Trimestre
+        'Inglés': 20,
+        'Matemática': 17,
+        'Comunicación': 16,
+        'Álgebra': 18,
+        'Raz. Verbal': 19,
+      },
+    };
+
+    // Función para actualizar la tabla según el trimestre seleccionado
+    function mostrarCalificaciones() {
+      const trimestre = document.getElementById('trimestre').value;
+      const tableBody = document.getElementById('calificaciones-table').getElementsByTagName('tbody')[0];
+      const gradesContainer = document.getElementById('grades-container');
+      
+      // Si no se seleccionó un trimestre, ocultar la tabla
+      if (trimestre == 0) {
+        gradesContainer.style.display = 'none';
+        return;
+      }
+
+      // Mostrar la tabla de calificaciones
+      gradesContainer.style.display = 'block';
+
+      // Limpiar la tabla
+      tableBody.innerHTML = '';
+
+      // Obtener las calificaciones del trimestre seleccionado
+      const cursos = calificaciones[trimestre];
+
+      // Rellenar la tabla con las calificaciones del trimestre seleccionado
+      for (const curso in cursos) {
+        const row = tableBody.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.textContent = curso;
+        cell2.textContent = cursos[curso];
+      }
+    }
+  </script>
+
+</body>
+</html>

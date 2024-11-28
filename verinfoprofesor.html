@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudiantes</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Ajustes para el selector */
+    .select2-container {
+      width: 100% !important;
+    }
+
+    /* Estilos para el contenedor de información */
+    .info-container {
+      max-width: 800px;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-group {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .info-group label {
+      width: 200px;
+      font-weight: bold;
+    }
+
+    .info-group p {
+      flex: 1;
+      color: #333;
+    }
+
+    #editarBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>
+      <img src="./Logo2021.png" alt="Logo" width="40" height="40"> SA-EDU
+    </h2>
+    <ul>
+        <li><a href="inicioprofesor.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="verinfoprofesor.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="gestionarcursos.html">Cursos <i class="fas fa-book"></i></a></li>
+<li><a href="horarioprofesor.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="subirnotas.html">Calificaciones <i class="fas fa-chart-bar"></i></a></li>
+<li><a href="mensajesprofesor.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="icons">
+        <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+      </div>
+    </div>
+
+    <div>
+        <label for="alumnos">Estudiantes</label>
+        <select id="alumnos" style="width: 100%;">
+          <option value="">Seleccione un estudiante</option>
+          <option value="1">Rojas Chomba, Victor Manuel</option>
+        </select>
+    </div>
+    
+    <div id="infoContainer" class="info-container" style="display: none;">
+      <div class="info-group"><label>Apellido Paterno:</label><p id="apellidoPaterno"></p></div>
+      <div class="info-group"><label>Apellido Materno:</label><p id="apellidoMaterno"></p></div>
+      <div class="info-group"><label>Nombres:</label><p id="nombres"></p></div>
+      <div class="info-group"><label>Nombre Completo:</label><p id="nombreCompleto"></p></div>
+      <div class="info-group"><label>Fecha Nacimiento:</label><p id="fechaNacimiento"></p></div>
+      <div class="info-group"><label>Sexo:</label><p id="sexo"></p></div>
+      <div class="info-group"><label>País de Nacimiento:</label><p id="paisNacimiento"></p></div>
+      <div class="info-group"><label>Nacionalidad:</label><p id="nacionalidad"></p></div>
+      <div class="info-group"><label>Departamento:</label><p id="departamento"></p></div>
+      <div class="info-group"><label>Provincia:</label><p id="provincia"></p></div>
+      <div class="info-group"><label>Distrito:</label><p id="distrito"></p></div>
+      <div class="info-group"><label>Lugar de Nacimiento:</label><p id="lugarNacimiento"></p></div>
+      <div class="info-group"><label>Tipo de Documento:</label><p id="tipoDocumento"></p></div>
+      <div class="info-group"><label>Nro. Documento:</label><p id="nroDocumento"></p></div>
+      <div class="info-group"><label>Religión:</label><p id="religion"></p></div>
+      <div class="info-group"><label>Bautizo:</label><p id="bautizo"></p></div>
+      <div class="info-group"><label>Comunión:</label><p id="comunion"></p></div>
+      <div class="info-group"><label>Email:</label><p id="email"></p></div>
+      <div class="info-group"><label>Responsable de Pago:</label><p id="responsablePago"></p></div>
+      <div class="info-group"><label>Responsable de Matrícula:</label><p id="responsableMatricula"></p></div>
+      <div class="info-group"><label>Con quién vive:</label><p id="conQuienVive"></p></div>
+      <div class="info-group"><label>Nacimiento Registrado:</label><p id="nacimientoRegistrado"></p></div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+      // Datos de los alumnos
+      const alumnos = {
+        "1": {
+          apellidoPaterno: "Rojas",
+          apellidoMaterno: "Chomba",
+          nombres: "Victor Manuel,",
+          nombreCompleto: "Rojas Chomba, Victor Manuel",
+          fechaNacimiento: "10/08/2002",
+          sexo: "Masculino",
+          paisNacimiento: "Perú",
+          nacionalidad: "Peruana",
+          departamento: "Cajamarca",
+          provincia: "Cajamarca",
+          distrito: "Cajamarca",
+          lugarNacimiento: "Cajamarca",
+          tipoDocumento: "DNI",
+          nroDocumento: "78703031",
+          religion: "Católico",
+          bautizo: "Sí",
+          comunion: "No",
+          email: "victor123@gmail.com",
+          responsablePago: "Padre",
+          responsableMatricula: "Padre",
+          conQuienVive: "Madre",
+          nacimientoRegistrado: "Sí"
+        },
+        // Agrega más datos de alumnos aquí
+      };
+    
+      $(document).ready(function() {
+        // Inicializa Select2
+        $('#alumnos').select2({
+          placeholder: "Seleccione un estudiante",
+          allowClear: true
+        });
+    
+        // Evento de cambio para actualizar la información del alumno
+        $('#alumnos').on('change', function() {
+          const alumnoId = $(this).val();
+          if (alumnoId && alumnos[alumnoId]) {
+            const alumno = alumnos[alumnoId];
+            
+            // Muestra la información del alumno en los campos correspondientes
+            $('#apellidoPaterno').text(alumno.apellidoPaterno);
+            $('#apellidoMaterno').text(alumno.apellidoMaterno);
+            $('#nombres').text(alumno.nombres);
+            $('#nombreCompleto').text(alumno.nombreCompleto);
+            $('#fechaNacimiento').text(alumno.fechaNacimiento);
+            $('#sexo').text(alumno.sexo);
+            $('#paisNacimiento').text(alumno.paisNacimiento);
+            $('#nacionalidad').text(alumno.nacionalidad);
+            $('#departamento').text(alumno.departamento);
+            $('#provincia').text(alumno.provincia);
+            $('#distrito').text(alumno.distrito);
+            $('#lugarNacimiento').text(alumno.lugarNacimiento);
+            $('#tipoDocumento').text(alumno.tipoDocumento);
+            $('#nroDocumento').text(alumno.nroDocumento);
+            $('#religion').text(alumno.religion);
+            $('#bautizo').text(alumno.bautizo);
+            $('#comunion').text(alumno.comunion);
+            $('#email').text(alumno.email);
+            $('#responsablePago').text(alumno.responsablePago);
+            $('#responsableMatricula').text(alumno.responsableMatricula);
+            $('#conQuienVive').text(alumno.conQuienVive);
+            $('#nacimientoRegistrado').text(alumno.nacimientoRegistrado);
+    
+            // Muestra el contenedor de información
+            $('#infoContainer').show();
+          } else {
+            // Oculta el contenedor de información si no se selecciona un alumno
+            $('#infoContainer').hide();
+          }
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>

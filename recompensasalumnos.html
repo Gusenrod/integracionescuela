@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Recompensas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="reneward.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .sidebar {
+      background-color: #24478f;
+      color: white;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .icons a {
+      margin-left: 15px;
+      color: #24478f;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    .top-bar .icons a:hover {
+      color: #1a73e8;
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: #24478f;
+      color: white;
+    }
+
+    .nav-tabs .nav-link {
+      color: #24478f;
+    }
+
+    .tab-content {
+      margin-top: 20px;
+    }
+
+    .redeem-btn {
+      margin-left: 10px;
+    }
+
+    .redeem-all-btn {
+      margin-top: 20px;
+    }
+
+    .btn-logout {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .points-box span {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="./Logo2021.png" alt="Logo" width="40" height="40"> SA-EDU
+    </div>
+    <ul>
+        <li><a href="inicioalumno.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+        <li><a href="vercursosalumnos.html">Cursos <i class="fas fa-tasks"></i></a></li>
+        <li><a href="verhorariosalumnos.html">Horario <i class="fas fa-clock"></i></a></li>
+        <li><a href="recompensasalumnos.html">Recompensas <i class="fas fa-gift"></i></a></li>
+        <li><a href="vercalificaciones.html">Calificaciones <i class="fas fa-graduation-cap"></i></a></li>
+        <li><a href="mensajesalumnos.html">Bandeja de entrada <i class="fas fa-envelope"></i></a></li>
+        
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="icons">
+        <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+      </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs" id="rewardsTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="activities-tab" data-bs-toggle="tab" data-bs-target="#activities" type="button" role="tab" aria-controls="activities" aria-selected="true">Actividades</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="points-tab" data-bs-toggle="tab" data-bs-target="#points" type="button" role="tab" aria-controls="points" aria-selected="false">Puntos Acumulados</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="rewards-tab" data-bs-toggle="tab" data-bs-target="#rewards" type="button" role="tab" aria-controls="rewards" aria-selected="false">Recompensas Disponibles</button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="rewardsTabContent">
+      <!-- Tab Actividades -->
+      <div class="tab-pane fade show active" id="activities" role="tabpanel" aria-labelledby="activities-tab">
+        <h1>Actividades que Otorgan Puntos</h1>
+        <ul class="activity-list">
+          <li>Participación en actividades extracurriculares <span>+10 puntos</span></li>
+          <li>Pago puntual de la matrícula <span>+15 puntos</span></li>
+          <li>Recomendación de la institución <span>+20 puntos</span></li>
+        </ul>
+      </div>
+
+      <!-- Tab Puntos Acumulados -->
+      <div class="tab-pane fade" id="points" role="tabpanel" aria-labelledby="points-tab">
+        <h2>Puntos Acumulados</h2>
+        <div class="points-box">
+          <p>Total: <span id="points-amount">45</span> puntos</p>
+        </div>
+        <button class="redeem-all-btn btn btn-primary mt-2" onclick="showRewardsTab()">Canjear mis puntos</button>
+      </div>
+
+      <!-- Tab Recompensas Disponibles -->
+      <div class="tab-pane fade" id="rewards" role="tabpanel" aria-labelledby="rewards-tab">
+        <h2>Recompensas Disponibles</h2>
+        <ul class="rewards-list">
+          <li>Descuento en libros <button class="redeem-btn btn btn-outline-primary" onclick="redeemPoints(20, 'Descuento en libros')">Canjear 20 puntos</button></li>
+          <li>Materiales educativos <button class="redeem-btn btn btn-outline-primary" onclick="redeemPoints(30, 'Materiales educativos')">Canjear 30 puntos</button></li>
+          <li>Descuento en inscripción <button class="redeem-btn btn btn-outline-primary" onclick="redeemPoints(50, 'Descuento en inscripción')">Canjear 50 puntos</button></li>
+        </ul>
+        <button class="view-rewards-btn btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#historyModal">Ver Mis Recompensas</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Historial de Recompensas -->
+  <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="historyModalLabel">Historial de Recompensas Canjeadas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul id="rewardHistory">
+            <!-- El historial de recompensas se llenará dinámicamente aquí -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let rewardHistory = [];
+
+    // Función para mostrar la pestaña de recompensas
+    function showRewardsTab() {
+      const rewardsTab = new bootstrap.Tab(document.getElementById('rewards-tab'));
+      rewardsTab.show();
+    }
+
+    // Lógica para canjear puntos
+    function redeemPoints(pointsToRedeem, rewardName) {
+      let currentPoints = parseInt(document.getElementById('points-amount').innerText);
+
+      if (currentPoints >= pointsToRedeem) {
+        currentPoints -= pointsToRedeem;
+        document.getElementById('points-amount').innerText = currentPoints;
+
+        // Agregar recompensa al historial
+        rewardHistory.push(rewardName);
+
+        // Actualizar el historial de recompensas en el modal
+        updateRewardHistory();
+      } else {
+        alert("No tienes suficientes puntos para canjear.");
+      }
+    }
+
+    // Función para actualizar el historial de recompensas en el modal
+    function updateRewardHistory() {
+      const rewardList = document.getElementById('rewardHistory');
+      rewardList.innerHTML = ''; // Limpiar el historial anterior
+
+      // Mostrar solo el último tipo de recompensa canjeada
+      if (rewardHistory.length > 0) {
+        const lastReward = rewardHistory[rewardHistory.length - 1];
+        const listItem = document.createElement('li');
+        listItem.textContent = lastReward;
+        rewardList.appendChild(listItem);
+      }
+    }
+  </script>
+</body>
+</html>

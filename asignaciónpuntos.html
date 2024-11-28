@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asignación de Puntos - Sistema de Recompensas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+    }
+    .sidebar {
+      width: 220px;
+      background-color: #2c3e50;
+      color: white;
+      padding-top: 20px;
+      min-height: 100vh;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .sidebar h2 {
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .sidebar h2 img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      padding: 15px 20px;
+    }
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+    }
+    .sidebar ul li a i {
+      margin-right: 10px;
+    }
+    .sidebar ul li a:hover {
+      background-color: #34495e;
+      border-radius: 4px;
+    }
+    .notification-button {
+      position: relative;
+  top: 10px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  padding: 6px 10px; /* Ajuste de padding para reducir el tamaño */
+  font-size: 14px; /* Ajuste de tamaño de fuente para reducir el tamaño */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: -10px;
+}
+
+    .notification-button:hover {
+      background-color: #005bb5;
+    }
+    .notification-list {
+      display: none;
+      position: absolute;
+      left: 240px;
+      top: 100px;
+      width: 300px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .notification-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+    .notification-item h3 {
+      font-size: 14px;
+      margin: 0;
+    }
+    .notification-item span {
+      font-size: 12px;
+      color: #666;
+    }
+    .main-content {
+      flex: 1;
+      background-color: #f4f4f9;
+      padding: 20px;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      background-color: #ecf0f1;
+      border-bottom: 1px solid #ccc;
+    }
+    .top-bar .icons a {
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .top-bar .icons a:hover {
+      color: #2980b9;
+    }
+    .container {
+      max-width: 700px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .dropdown-group {
+      margin-bottom: 20px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .activity-list {
+      display: none;
+      margin-top: 20px;
+    }
+    .activity-item {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+    .activity-item span {
+      flex: 1;
+      text-align: left;
+      padding-right: 20px;
+    }
+    button.assign-points-btn {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button.assign-points-btn:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>
+      <img src="./Logo2021.png" alt="Logo" width="40" height="40"> SA-EDU
+    </h2>
+    <ul>
+      <li><a href="iniciosecretaria.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="infoestudiantes.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="horariosecretaria.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="asignaciónpuntos.html">Recompensas <i class="fas fa-gift"></i></a></li>
+<li><a href="mensajessecretaria.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="icons">
+        <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+      </div>
+    </div>
+    <button class="notification-button" onclick="toggleNotifications()">Canjes Realizados</button>
+    <!-- Lista de Notificaciones -->
+    <div class="notification-list" id="notificationList">
+      <!-- Las notificaciones de canjes se cargarán aquí dinámicamente -->
+    </div>
+
+    <div class="container">
+      <h2>Asignación de Puntos</h2>
+
+      <!-- Selector de Alumno -->
+      <div class="dropdown-group">
+        <label for="alumno">Seleccione un Alumno:</label>
+        <select id="alumno" onchange="loadActivities()">
+          <option value="">Seleccione un alumno</option>
+          <option value="ABANTO CASTAÑEDA, Mya Antonella">Rojas Chomba, Victor Manuel</option>
+        </select>
+      </div>
+
+      <!-- Lista de Actividades del Alumno -->
+      <div class="activity-list" id="activityList">
+        <h3>Historial de Actividades</h3>
+        <!-- Las actividades se cargarán aquí dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleNotifications() {
+      const notificationList = document.getElementById("notificationList");
+      notificationList.style.display = notificationList.style.display === "none" || notificationList.style.display === "" ? "block" : "none";
+    }
+
+    function loadActivities() {
+      const alumnoId = document.getElementById("alumno").value;
+      const activityList = document.getElementById("activityList");
+
+      activityList.innerHTML = "<h3>Historial de Actividades</h3>";
+
+      if (alumnoId) {
+        activityList.style.display = "block";
+
+        const activities = [
+          { id: 1, name: "Participación en actividades extracurriculares", points: 10 },
+          { id: 2, name: "Pago puntual de la matrícula", points: 15 },
+          { id: 3, name: "Recomendación de la institución", points: 20 },
+        ];
+
+        activities.forEach(activity => {
+          const activityItem = document.createElement("div");
+          activityItem.classList.add("activity-item");
+          activityItem.innerHTML = `
+            <span>${activity.name} (+${activity.points} puntos)</span>
+            <button class="assign-points-btn" onclick="assignPoints(${activity.id})">Asignar Puntos</button>
+          `;
+          activityList.appendChild(activityItem);
+        });
+      } else {
+        activityList.style.display = "none";
+      }
+    }
+
+    function assignPoints(activityId) {
+      alert(`Puntos asignados para la actividad ${activityId}`);
+    }
+
+    function loadNotifications() {
+      const notificationList = document.getElementById("notificationList");
+
+      const notifications = [
+        { id: 1, alumno: "Rojas Chomba, Victor Manuel", premio: "Mochila", fecha: "2023-11-05" },
+      ];
+
+      notificationList.innerHTML = "";
+
+      notifications.forEach(notification => {
+        const notificationItem = document.createElement("div");
+        notificationItem.classList.add("notification-item");
+        notificationItem.innerHTML = `
+          <h3>${notification.alumno} - Canje de Premio: ${notification.premio}</h3>
+          <span>Fecha: ${notification.fecha}</span>
+        `;
+        notificationList.appendChild(notificationItem);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadNotifications);
+  </script>
+</body>
+</html>

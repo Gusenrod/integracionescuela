@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material de clases</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .section-header h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    .file-list {
+      padding: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .file-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .file-list li:last-child {
+      border-bottom: none;
+    }
+    .file-list li a {
+      text-decoration: none;
+      color: #0073e6;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .actions button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background-color: #005bb5;
+    }
+    .upload-form {
+      margin-top: 10px;
+    }
+    .upload-form input[type="text"],
+    .upload-form input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    /* Ocultar selectores y formularios progresivos inicialmente */
+    #cursoGroup,
+    #sectionForm {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>
+      <img src="./Logo2021.png" alt="Logo" width="40" height="40"> SA-EDU
+    </h2>
+    <ul>
+        <li><a href="inicioprofesor.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="verinfoprofesor.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="gestionarcursos.html">Cursos <i class="fas fa-book"></i></a></li>
+<li><a href="horarioprofesor.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="subirnotas.html">Calificaciones <i class="fas fa-chart-bar"></i></a></li>
+<li><a href="mensajesprofesor.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-bar">
+      <div class="icons">
+        <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Cursos</h2>
+
+      <!-- Selector combinado de Grado y Sección, visible desde el inicio -->
+      <div class="dropdown-group" id="gradoSeccionGroup">
+        <label for="gradoSeccion">Grado y Sección:</label>
+        <select id="gradoSeccion" onchange="showCursoDropdown()">
+          <option value="">Seleccione un grado y sección</option>
+          <option value="1A">1° grado </option>
+          <option value="1B">2° grado </option>
+          <option value="2A">3° grado </option>
+          <option value="2B">4° grado </option>
+          <!-- Añadir más opciones según sea necesario -->
+        </select>
+      </div>
+
+      <!-- Selector de Curso, inicialmente oculto -->
+      <div class="dropdown-group" id="cursoGroup">
+        <label for="curso">Curso:</label>
+        <select id="curso" onchange="showSectionForm()">
+            <option value="matematica">Matematica</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="comunicacion">Comunicación</option>
+          <!-- Añadir más opciones según sea necesario -->
+        </select>
+      </div>
+
+      <!-- Formulario para agregar una nueva sección, inicialmente oculto -->
+      <div class="upload-form" id="sectionForm">
+        <label for="sectionName">Nombre de la Sección:</label>
+        <input type="text" id="sectionName" maxlength="20" placeholder="Ejemplo: Sesión 01">
+        <button onclick="addSection()">Agregar Sección</button>
+      </div>
+    
+      <!-- Contenedor de secciones -->
+      <div id="sectionsContainer">
+        <!-- Las secciones se agregarán aquí dinámicamente -->
+      </div>
+    </div>
+
+    <script>
+      // Muestra el selector de curso al elegir grado y sección
+      function showCursoDropdown() {
+        const gradoSeccion = document.getElementById("gradoSeccion").value;
+        if (gradoSeccion) {
+          document.getElementById("cursoGroup").style.display = "block";
+        } else {
+          document.getElementById("cursoGroup").style.display = "none";
+          document.getElementById("sectionForm").style.display = "none";
+        }
+      }
+
+      // Muestra el formulario de sección al elegir un curso
+      function showSectionForm() {
+        const curso = document.getElementById("curso").value;
+        if (curso) {
+          document.getElementById("sectionForm").style.display = "block";
+        } else {
+          document.getElementById("sectionForm").style.display = "none";
+        }
+      }
+
+      // Función para agregar una nueva sección de materiales
+      function addSection() {
+        const sectionName = document.getElementById("sectionName").value;
+        if (!sectionName.trim()) {
+          alert("Por favor, ingrese un nombre para la sección.");
+          return;
+        }
+
+        const section = document.createElement("div");
+        section.classList.add("section");
+
+        section.innerHTML = `
+          <div class="section-header">
+            <h3>${sectionName}</h3>
+            <button onclick="showUploadForm(this)">Subir Material</button>
+          </div>
+          <div class="upload-form" style="display: none;">
+            <input type="file" accept=".docx, .pdf, .mp4" onchange="uploadFile(this)" />
+          </div>
+          <ul class="file-list"></ul>
+        `;
+
+        document.getElementById("sectionsContainer").appendChild(section);
+        document.getElementById("sectionName").value = ""; // Limpiar el campo de texto
+      }
+
+      // Función para mostrar el formulario de carga de archivos
+      function showUploadForm(button) {
+        const uploadForm = button.parentElement.nextElementSibling;
+        uploadForm.style.display = uploadForm.style.display === "none" ? "block" : "none";
+      }
+
+      // Función para subir un archivo a una sección
+      function uploadFile(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const fileList = input.closest(".section").querySelector(".file-list");
+        const fileItem = document.createElement("li");
+
+        fileItem.innerHTML = `
+          <a href="#">${file.name}</a>
+          <div class="actions">
+            <button onclick="editFileName(this)">Editar</button>
+            <button onclick="removeFile(this)">Eliminar</button>
+          </div>
+        `;
+
+        fileList.appendChild(fileItem);
+
+        // Ocultar el formulario de subida después de agregar el archivo
+        input.parentElement.style.display = "none";
+        input.value = ""; // Limpiar el campo de archivo
+      }
+
+      // Función para editar el nombre de un archivo
+      function editFileName(button) {
+        const fileItem = button.closest("li").querySelector("a");
+        const newFileName = prompt("Ingrese el nuevo nombre del archivo:", fileItem.textContent);
+        if (newFileName) {
+          fileItem.textContent = newFileName;
+        }
+      }
+
+      // Función para eliminar un archivo de la sección
+      function removeFile(button) {
+        const fileItem = button.closest("li");
+        fileItem.remove();
+      }
+    </script>      
+</body>
+</html>

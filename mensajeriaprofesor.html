@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redactar Mensaje</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Barra lateral */
+    .sidebar {
+      background-color: #24478f;
+      color: white;
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Logo de la plataforma */
+    .sidebar h2 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar img {
+      max-width: 80%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Contenido principal */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar a {
+      color: #24478f;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    .top-bar .icons a:hover {
+      color: #1a73e8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #24478f;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select, input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 150px;
+    }
+
+    .actions {
+      text-align: right;
+    }
+
+    .actions button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background-color: #0056b3;
+    }
+
+    .actions .cancel {
+      background-color: #dc3545;
+    }
+
+    .actions .cancel:hover {
+      background-color: #a71d2a;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Barra Lateral -->
+  <div class="sidebar">
+    <!-- Logo de la plataforma SA-EDU -->
+    <img src="logo-sa-edu.png" alt="Logo SA-EDU"> <!-- Asegúrate de tener el logo en la ruta correcta -->
+    <h2>SA-EDU</h2>
+    <ul>
+        <li><a href="inicioprofesor.html">Tablero <i class="fas fa-tachometer-alt"></i></a></li>
+<li><a href="verinfoprofesor.html">Alumnos <i class="fas fa-user-graduate"></i></a></li>
+<li><a href="gestionarcursos.html">Cursos <i class="fas fa-book"></i></a></li>
+<li><a href="horarioprofesor.html">Horario <i class="fas fa-calendar-alt"></i></a></li>
+<li><a href="subirnotas.html">Calificaciones <i class="fas fa-chart-bar"></i></a></li>
+<li><a href="mensajesprofesor.html">Bandeja de Entrada <i class="fas fa-envelope"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div class="main-content">
+    <!-- Barra superior con botón de salir -->
+    <div class="top-bar">
+      <a href="login.component.html"><i class="fas fa-sign-out-alt"></i></a> <!-- Salir -->
+    </div>
+
+    <!-- Formulario de Redacción de Mensaje -->
+    <div class="container">
+      <h2>Redactar Mensaje</h2>
+      <form action="mensajesprofesor.html" method="POST">
+        <!-- Botón desplegable para elegir destinatario -->
+        <label for="destinatario">Seleccionar Destinatario:</label>
+        <select id="destinatario" name="destinatario" required>
+          <option value="">Seleccione un destinatario</option>
+          <option value="Rodríguez Céspedes, Karen Ariadna">Rojas Chomba, Victor Manuel</option>
+        </select>
+
+        <label for="asunto">Asunto:</label>
+        <input type="text" id="asunto" name="asunto" placeholder="Escribe el asunto del mensaje" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+        <div class="actions">
+          <button type="button" onclick="window.location.href='mensajesprofesor.html';">Enviar</button>
+          <button type="button" class="cancel" onclick="window.location.href='mensajesprofesor.html';">Cancelar</button>
+          </div>
+          
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

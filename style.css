@@ -1,0 +1,114 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background-color: #204b8c;
+    color: white;
+    padding: 20px;
+  }
+  
+  .sidebar h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Barra superior con íconos */
+  .top-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 30px;
+    background-color: #f8f9fa;
+  }
+  
+  .top-bar .icons a {
+    margin-left: 15px;
+    color: #204b8c;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .top-bar .icons a:hover {
+    color: #163d6f;
+  }
+  
+  /* Contenido principal */
+  .main-content {
+    flex: 1;
+    padding: 30px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+  }
+  
+  .back-btn {
+    text-decoration: none;
+    color: #204b8c;
+    font-weight: bold;
+  }
+  
+  /* Tabla de horarios */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .schedule-table thead th {
+    background-color: #204b8c;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .schedule-table tbody td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+  }
+  
+  .schedule-table tbody td:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
